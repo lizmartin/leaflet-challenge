@@ -1,5 +1,5 @@
 // read in json data file samples.json
-const url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson'
+const url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson'
 const dataPromise = d3.json(url);
 console.log("Data Promise: ", dataPromise);
 
@@ -17,9 +17,9 @@ dataPromise.then(function(data) {
         var coordinates = quakeData.features[i].geometry.coordinates;
         function chooseColor(depth) {
             if (depth >= 90) return'red';
-            if (depth >= 70) return 'orange';
-            if (depth >= 50) return 'yellow';
-            if (depth >= 30) return 'green';
+            else if (depth >= 70) return 'orange';
+            else if (depth >= 50) return 'yellow';
+            else if (depth >= 30) return 'green';
             else if (depth >= 10) return 'blue';
             else return 'purple';
             }
@@ -34,8 +34,15 @@ dataPromise.then(function(data) {
             radius: magnitude * 50000
         })
                 
-        marker.bindPopup("<h3>" + place + "</h3><hr><p>" + "Magnitude: " + magnitude + "</p><p>" + "Time: " + time + "</p>");
-            quakeMarker.push(marker);
+        //marker.bindPopup("<h3>" + place + "</h3><hr><p>" + "Magnitude: " + magnitude + "</p><p>" + "Time: " + time + "</p>");
+            //quakeMarker.push(marker);
+    
+            marker.bindTooltip("<h3>" + `magnitude: ` + magnitude 
+            // + "</h3><hr><p>" + `felt?: ` + felt + "</p>"
+            + "</h3><hr><p>" + `location: ` +place + "</p>" 
+            + "</h3><hr><p>" + `depth: ` + coordinates[2] + "</p>"
+            + "</h3><hr><p>" + `time: ` + new Date(time) + "</p>").openTooltip();
+            quakeMarkers.push(marker);
     }
     console.log("Quake Marker: ", quakeMarker);
 
@@ -66,8 +73,14 @@ dataPromise.then(function(data) {
         div.innerHTML = legendInfo;
         for (var i = 0; i < limits.length; i++) {
             div.innerHTML +=
-                "<i style='background: " + colors[i] + "'></i> " +
-                limits[i] + (limits[i + 1]? "&ndash;" + limits[i + 1] + "<br>" : "+");
+              '<div class="color-box" style="background-color:' + colors[i] + '"></div>' +
+              '<span>' + labels[i] + '</span><br>';
+
+
+        //for (var i = 0; i < limits.length; i++) {
+            //div.innerHTML +=
+                //"<i style='background: " + colors[i] + "'></i> " +
+                //limits[i] + (limits[i + 1]? "&ndash;" + limits[i + 1] + "<br>" : "+");
         }
 
         return div;
