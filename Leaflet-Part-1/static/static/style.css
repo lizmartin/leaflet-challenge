@@ -1,0 +1,57 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+} */
+
+/* all the following created using Expert Learning Assistant AI */
+
+.legend {
+  background-color: white;
+  padding: 6px 8px;
+  font: 12px Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.info.legend {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  z-index: 1000;
+  padding: 6px 8px;
+  font: 12px Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.info.legend ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info.legend li {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.info.legend .color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
