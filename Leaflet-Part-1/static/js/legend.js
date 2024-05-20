@@ -26,3 +26,4 @@ legend.onAdd = function() {
 
 //add legend to map
 legend.addTo(myMap);
+}
